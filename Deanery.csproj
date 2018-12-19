@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="Students.cs"/>
+        <Compile Remove="Behavior.cs"/>
+        <Compile Remove="IBehavior.cs"/>
+        <Compile Remove="IRealObject.cs"/>
+        <Compile Remove="AgentStudent.cs"/>
+        <Compile Remove="Lecturer.cs"/>
+        <Compile Remove="IAgent.cs"/>
+    </ItemGroup>
+
+</Project>

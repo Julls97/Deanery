@@ -13,9 +13,13 @@ namespace Deanery {
 			Thread = new Thread(Action);
 			Thread.Start();
 		}
+		public void Join() {
+			Thread.Join();
+		}
+
 
 		public void Action() {
-			while (!Storage.Instance.CanComeIn()) ;
+			while (!Storage.Instance.CanComeIn());
 			Storage.Instance.ComeIn();
 
 			foreach (var item in Documents)
@@ -28,9 +32,13 @@ namespace Deanery {
 					if (CheckDone(id)) {
 						Documents.Remove(Documents[i]);
 						RemoveDoc(id);
+						Console.WriteLine(id + " документ забрал.");
 					}
 				}
-				Console.WriteLine("Ждем-с");
+				//foreach (var item in Storage.Instance.storage) {
+					//Console.WriteLine(item.Value);
+				//}
+				Console.WriteLine("Ждем-с.");
 				Thread.Sleep(2000);
 			}
 

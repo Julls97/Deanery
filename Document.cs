@@ -24,5 +24,13 @@ namespace Deanery {
 		public DocTypes DocType;
 		public ComplicationTypes ComplicationType;
 		public bool isDone = false;
+
+		public override string ToString() {
+			string s = "";
+			s += "id is " + Id;
+			s += " DocType is " + DocType;
+			s += " ComplicationType is " + ComplicationType;
+			return s;
+		}
 	}
 }

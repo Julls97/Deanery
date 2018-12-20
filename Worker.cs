@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Deanery {
@@ -8,10 +9,6 @@ namespace Deanery {
 			fast = 1
 		}
 
-		public enum DocTypes {
-			// только на подпись и обработку
-		}
-
 		public Thread Thread;
 
 		public Worker() {
@@ -19,12 +16,27 @@ namespace Deanery {
 		}
 
 		public EfficiencyTypes EfficiencyType;
-		public DocTypes DocType;
+		public List<Document.DocTypes> DocType;
 
 		public void Action() {
-			// смотреть в хранилище подходящие документы
+//			while (true) {
+//				
+//			}
+			
+			foreach(var item in storage) {}
+			
 			Thread.Sleep((int) EfficiencyType * 1000);
-			Documents.isDone = true;
+			SetDone(id);
+			
+			
+
+		}
+		
+		public void SetDone(int id) {
+			Document document = new Document();
+			Storage.Instance.storage.TryGetValue(id, out document);
+			document.isDone = true;
+			//storage.TryUpdate(id, document, newdocunment )
 		}
 	}
 }

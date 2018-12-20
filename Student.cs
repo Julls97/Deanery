@@ -11,15 +11,16 @@ namespace Deanery {
 		public Student() {
 			Documents = DocumentGenerator.NextList();
 			Thread = new Thread(Action);
+			Thread.Start();
 		}
 
 		public void Action() {
 			while (!Storage.Instance.CanComeIn()) ;
 			Storage.Instance.ComeIn();
 
-			foreach (var item in Documents) 
+			foreach (var item in Documents)
 				AddDoc(item);
-			
+
 
 			while (Documents.Count != 0) {
 				for (var i = 0; i < Documents.Count; i++) {
@@ -29,8 +30,10 @@ namespace Deanery {
 						RemoveDoc(id);
 					}
 				}
+				Console.WriteLine("Ждем-с");
 				Thread.Sleep(2000);
 			}
+
 			Storage.Instance.ComeOut();
 		}
 
@@ -44,7 +47,7 @@ namespace Deanery {
 			Storage.Instance.storage.TryRemove(id, out document);
 //			return document;
 		}
-		
+
 		public bool CheckDone(int id) {
 			Document document = new Document();
 			Storage.Instance.storage.TryGetValue(id, out document);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -13,6 +14,7 @@ namespace Deanery {
 
 		public Worker() {
 			Thread = new Thread(Action);
+			Thread.Start();
 		}
 
 		public EfficiencyTypes EfficiencyType;
@@ -21,14 +23,16 @@ namespace Deanery {
 		public void Action() {
 			while (!Storage.Instance.storage.IsEmpty) {
 				foreach (var item in Storage.Instance.storage) {
-					if (DocType.Contains(item.Value.DocType)) { // забирает подходящий по типу док
+					if (DocType.Contains(item.Value.DocType)) {
+						// забирает подходящий по типу док
+						Console.WriteLine("Решаем-с");
 						Thread.Sleep((int) EfficiencyType * 1000 * (int) item.Value.ComplicationType);
 						SetDone(item.Key);
 					}
 				}
 			}
 		}
-		
+
 		public void SetDone(int id) {
 			Document document = new Document();
 			Storage.Instance.storage.TryGetValue(id, out document);

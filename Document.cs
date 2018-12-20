@@ -1,7 +1,7 @@
 namespace Deanery {
 	public class Document {
 		public enum DocTypes {
-			signature = 0,
+			signature = 1,
 			print,
 			expel,
 			transfer,
@@ -18,7 +18,7 @@ namespace Deanery {
 			hard = 3
 		}
 
-		public const int DocTypeCount = 8;
+		public const int DocTypeCount = 10;
 		public const int ComplicationTypesCount = 3;
 		public int Id;
 		public DocTypes DocType;

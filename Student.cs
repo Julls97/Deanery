@@ -16,33 +16,33 @@ namespace Deanery {
 		public void Action() {
 			while (!Storage.Instance.CanComeIn()) ;
 			Storage.Instance.ComeIn();
-			List<int> ids = new List<int>();
-			foreach (var item in Documents) {
-				ids.Add(AddDoc(item));
-			}
 
-			while (ids.Count != 0) {
-				Thread.Sleep(2000);
-				for (var i = 0; i < ids.Count; i++) {
-					var id = ids[i];
+			foreach (var item in Documents) 
+				AddDoc(item);
+			
+
+			while (Documents.Count != 0) {
+				for (var i = 0; i < Documents.Count; i++) {
+					var id = Documents[i].Id;
 					if (CheckDone(id)) {
-						ids.Remove(i);
+						Documents.Remove(Documents[i]);
 						RemoveDoc(id);
 					}
 				}
+				Thread.Sleep(2000);
 			}
 			Storage.Instance.ComeOut();
 		}
 
-		public int AddDoc(Document document) {
+		public void AddDoc(Document document) {
 			Storage.Instance.storage.TryAdd(document.Id, document);
-			return document.Id;
+//			return document.Id;
 		}
 
-		public Document RemoveDoc(int id) {
+		public void RemoveDoc(int id) {
 			Document document = new Document();
 			Storage.Instance.storage.TryRemove(id, out document);
-			return document;
+//			return document;
 		}
 		
 		public bool CheckDone(int id) {

@@ -23,6 +23,6 @@ namespace Deanery {
 		public int Id;
 		public DocTypes DocType;
 		public ComplicationTypes ComplicationType;
-		public bool isDone;
+		public bool isDone = false;
 	}
 }

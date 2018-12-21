@@ -5,32 +5,28 @@ using System.Threading;
 namespace Deanery {
 	class Program {
 		static void Main(string[] args) {
-			Worker AN = new Worker(new List<Document.DocTypes>() {
+			Worker A1 = new Worker(new List<Document.DocTypes>() {
 				Document.DocTypes.signature,
 				Document.DocTypes.expel,
-				Document.DocTypes.print,
-				Document.DocTypes.rehabilitation,
-				Document.DocTypes.materialAssistance
+				Document.DocTypes.print
 			}, Worker.EfficiencyTypes.average);
-			Worker BM = new Worker(new List<Document.DocTypes>() {
+			Worker A2 = new Worker(new List<Document.DocTypes>() {
 				Document.DocTypes.transfer,
 				Document.DocTypes.retakeExam,
-				Document.DocTypes.restorationStudent,
-				Document.DocTypes.recoveryDocuments
+				Document.DocTypes.restorationStudent
 			}, Worker.EfficiencyTypes.slow);
+			
+			Worker A3 = new Worker(new List<Document.DocTypes>() {
+				Document.DocTypes.recoveryDocuments,
+				Document.DocTypes.rehabilitation,
+				Document.DocTypes.materialAssistance
+			}, Worker.EfficiencyTypes.fast);
 
-			Student Kate = new Student();
-			Student Mikael = new Student();
-			Student Sam = new Student();
-
-			AN.Join();
-			BM.Join();
-		
-			Kate.Join();
-			Mikael.Join();
-			Sam.Join();
-
-			Console.WriteLine("Закончили упражнение");
+			while (true) {
+				var sleep = new Random().Next(2, 5);
+				Thread.Sleep(1000 * sleep);
+				Student student = new Student();
+			}
 		}
 	}
 }

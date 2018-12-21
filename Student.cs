@@ -4,7 +4,6 @@ using System.Threading;
 
 namespace Deanery {
 	public class Student {
-		public int Speed;
 		public List<Document> Documents;
 		public Thread Thread;
 
@@ -13,10 +12,7 @@ namespace Deanery {
 			Thread = new Thread(Action);
 			Thread.Start();
 		}
-		public void Join() {
-			Thread.Join();
-		}
-
+		public void Join() { Thread.Join(); }
 
 		public void Action() {
 			while (!Storage.Instance.CanComeIn());
@@ -35,9 +31,6 @@ namespace Deanery {
 						Console.WriteLine(id + " документ забрал.");
 					}
 				}
-				//foreach (var item in Storage.Instance.storage) {
-					//Console.WriteLine(item.Value);
-				//}
 				Console.WriteLine("Ждем-с.");
 				Thread.Sleep(2000);
 			}

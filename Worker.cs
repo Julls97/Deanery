@@ -26,16 +26,13 @@ namespace Deanery {
 
 		public void Action() {
 			while (true) {
-			//while (!Storage.Instance.storage.IsEmpty) {
 				foreach (var item in Storage.Instance.storage) {
 					if (!item.Value.isDone && DocType.Contains(item.Value.DocType)) {
 						Console.WriteLine(item.Key + " документ в обработке, ждите.");
-//						long time = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 						int wait = (int) EfficiencyType * 1000 * (int) item.Value.ComplicationType;
 						Thread.Sleep(wait);
-//						long endTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
 						SetDone(item.Key);
-						Console.WriteLine(item.Key + " документ готов. Заберите. Время выполнения " + wait);
+						Console.WriteLine(item.Key + " документ готов. Заберите. Время выполнения " + wait/1000 + " мин.");
 					}
 				}
 			}
@@ -45,7 +42,6 @@ namespace Deanery {
 			Document document = new Document();
 			Storage.Instance.storage.TryGetValue(id, out document);
 			document.isDone = true;
-			//storage.TryUpdate(id, document, newdocunment )
 		}
 	}
 }
